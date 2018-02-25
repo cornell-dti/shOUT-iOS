@@ -9,16 +9,9 @@ import UIKit
 import CoreLocation
 import Firebase
 
-protocol PostViewControllerDelegate {
-    func postViewControllerDidTapPostButton(postViewController: PostViewController)
-}
+class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
-class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, GoOutViewControllerDelegate {
-    
-    func addPinToMapAfterPostPressed(postViewController: PostViewController) {
-        
-    }
-
+    var goOutViewController: GoOutViewController!
     var box: UIView!
     var currLocation: CLLocationCoordinate2D?
     var reset:Bool = false
@@ -30,7 +23,6 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var storyTextView: UITextView!
     var postButton: UIButton!
     var cancelButton: UIButton!
-    var delegate: GoOutViewControllerDelegate?
     
     let ref = FIRDatabase.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
@@ -215,7 +207,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
-        delegate?.addPinToMapAfterPostPressed(postViewController: self)
+        goOutViewController.addPinToMap(postViewController: self)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func cancelButtonPressed() {

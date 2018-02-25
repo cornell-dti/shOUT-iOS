@@ -12,6 +12,7 @@ import Pulley
 class MapViewController: PulleyViewController {
     
     var goOutViewController: GoOutViewController!
+    var postViewController: PostViewController!
     var onMapViewController: ReachOutViewController!
     var pulleyViewController: PulleyViewController!
     
@@ -21,6 +22,8 @@ class MapViewController: PulleyViewController {
         makeNavBar()
         
         goOutViewController = GoOutViewController()
+        postViewController = PostViewController()
+        postViewController.goOutViewController = goOutViewController
         onMapViewController = ReachOutViewController()
         pulleyViewController = PulleyViewController(contentViewController: goOutViewController, drawerViewController: onMapViewController)
         pulleyViewController.makeNavBar()
@@ -31,7 +34,7 @@ class MapViewController: PulleyViewController {
     }
     
     @objc func composeButtonPressed() {
-        present(PostViewController(), animated: true, completion: nil)
+        present(postViewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

@@ -10,22 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
-protocol GoOutViewControllerDelegate {
-    func addPinToMapAfterPostPressed(postViewController: PostViewController)
-}
-
-class GoOutViewController: UIViewController, MKMapViewDelegate, PostViewControllerDelegate {
-    
-    func postViewControllerDidTapPostButton(postViewController: PostViewController) {
-    
-    }
-    
-    var delegate: PostViewControllerDelegate?
+class GoOutViewController: UIViewController, MKMapViewDelegate {
     
     var mapView: MKMapView!
     
     var segmentedControl: UISegmentedControl!
-    
     
     var geocoder = CLGeocoder()
     //    var geotifications = [Geotification]()
@@ -65,7 +54,7 @@ class GoOutViewController: UIViewController, MKMapViewDelegate, PostViewControll
         mapView.setCamera(camera, animated: true)
     }
     
-    func addPinToMap() {
+    func addPinToMap(postViewController: PostViewController) {
         if let address = postViewController.locationTextField.text
         {
             if address == "" {
@@ -77,6 +66,7 @@ class GoOutViewController: UIViewController, MKMapViewDelegate, PostViewControll
                     let placemark = placemarks?.first
                     let lat = placemark?.location?.coordinate.latitude
                     let long = placemark?.location?.coordinate.longitude
+                    print (lat); print (long);
                     let location = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
                     let localAnnotation = MKPointAnnotation()
                     localAnnotation.coordinate = location
