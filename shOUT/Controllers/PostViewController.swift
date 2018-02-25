@@ -9,7 +9,15 @@ import UIKit
 import CoreLocation
 import Firebase
 
-class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
+protocol PostViewControllerDelegate {
+    func postViewControllerDidTapPostButton(postViewController: PostViewController)
+}
+
+class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, GoOutViewControllerDelegate {
+    
+    func addPinToMapAfterPostPressed(postViewController: PostViewController) {
+        
+    }
 
     var box: UIView!
     var currLocation: CLLocationCoordinate2D?
@@ -18,10 +26,11 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var titleTextField: UITextField!
     var dateLabel: UILabel!
     var timeLabel: UILabel!
-    var locationLabel: UILabel!
+    var locationTextField: UITextField!
     var storyTextView: UITextView!
     var postButton: UIButton!
     var cancelButton: UIButton!
+    var delegate: GoOutViewControllerDelegate?
     
     let ref = FIRDatabase.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
@@ -121,20 +130,20 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             timeLabel.setBottomBorder()
         }
         
-        locationLabel = UILabel(frame: .zero)
-        locationLabel.textAlignment = .center
-        locationLabel.font = reportLabel.font
-        locationLabel.textColor = .lightGray
-        locationLabel.adjustsFontSizeToFitWidth = true
-        locationLabel.text = "Tap icon to add a location"
-        view.addSubview(locationLabel)
+        locationTextField = UITextField(frame: .zero)
+        locationTextField.textAlignment = .center
+        locationTextField.font = reportLabel.font
+        locationTextField.textColor = .lightGray
+        locationTextField.adjustsFontSizeToFitWidth = true
+        locationTextField.text = "Inset Location Here"
+        view.addSubview(locationTextField)
         
-        locationLabel.snp.makeConstraints { (make) in
+        locationTextField.snp.makeConstraints { (make) in
             make.width.equalTo(titleTextField.snp.width)
             make.height.equalTo(titleTextField.snp.height)
             make.top.equalTo(timeLabel.snp.bottom).offset(15)
             make.centerX.equalTo(view.snp.centerX)
-            locationLabel.setBottomBorder()
+            locationTextField.setBottomBorder()
         }
         
         storyTextView = UITextView(frame: .zero)
@@ -147,7 +156,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         storyTextView.snp.makeConstraints { (make) in
             make.width.equalTo(box.snp.width).multipliedBy(0.85)
             make.height.equalTo(275)
-            make.top.equalTo(locationLabel.snp.bottom).offset(30)
+            make.top.equalTo(locationTextField.snp.bottom).offset(30)
             make.centerX.equalTo(view.snp.centerX)
         }
         
@@ -206,7 +215,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
-        
+        delegate?.addPinToMapAfterPostPressed(postViewController: self)
     }
     
     @objc func cancelButtonPressed() {
@@ -246,8 +255,16 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelPressed(_ sender: AnyObject) {
+    func cancelPressed(_ sender: AnyObject) {
         self.dismiss(animated: true , completion: nil)
+    }
+    
+    func emptyAddressAlert() {
+        let message = "You did not enter an address. Nothing was added to the map."
+        let alertController = UIAlertController(title: "Blank Address", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok.", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
     }
     
   //  @IBAction func postPressed(_ sender: Any) {

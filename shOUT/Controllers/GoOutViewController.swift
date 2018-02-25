@@ -10,7 +10,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class GoOutViewController: UIViewController, MKMapViewDelegate {
+protocol GoOutViewControllerDelegate {
+    func addPinToMapAfterPostPressed(postViewController: PostViewController)
+}
+
+class GoOutViewController: UIViewController, MKMapViewDelegate, PostViewControllerDelegate {
+    
+    func postViewControllerDidTapPostButton(postViewController: PostViewController) {
+    
+    }
+    
+    var delegate: PostViewControllerDelegate?
     
     var mapView: MKMapView!
     
@@ -53,6 +63,33 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
         mapView.addGestureRecognizer(longGesture)
         let camera = MKMapCamera(lookingAtCenter: mapView.centerCoordinate, fromEyeCoordinate: mapView.centerCoordinate, eyeAltitude: 1000)
         mapView.setCamera(camera, animated: true)
+    }
+    
+    func addPinToMap() {
+        if let address = postViewController.locationTextField.text
+        {
+            if address == "" {
+                self.emptyAddressAlert()
+            }
+            else{
+                self.geocoder.geocodeAddressString(address) {
+                    placemarks, error in
+                    let placemark = placemarks?.first
+                    let lat = placemark?.location?.coordinate.latitude
+                    let long = placemark?.location?.coordinate.longitude
+                    let location = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
+                    let localAnnotation = MKPointAnnotation()
+                    localAnnotation.coordinate = location
+                    localAnnotation.title = address
+                    
+                    localAnnotation.subtitle = "Potential Unsafe Zone"
+                    self.mapView.addAnnotation(localAnnotation)
+                    self.transformPins()
+                    
+                }
+            }
+            
+        }
     }
     
     @objc func pressNewPin() {
@@ -224,7 +261,7 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
     }
     
     func emptyAddressAlert() {
-        let message = "You did not enter an address. Nothing was added to the map."
+        let message = "You left the location field empty. Nothing was added to the map."
         let alertController = UIAlertController(title: "Blank Address", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok.", style: .cancel, handler: nil)
         alertController.addAction(action)
