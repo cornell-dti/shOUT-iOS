@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1CA197204370CC00A1F2C2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1CA196204370CC00A1F2C2 /* MapViewController.swift */; };
 		0C1D7B9C1FD1AC250090CE3A /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1D7B9B1FD1AC250090CE3A /* StoryTableViewCell.swift */; };
 		0C5D5841202E59F4001B7993 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D5840202E59F4001B7993 /* TabBarController.swift */; };
 		0C5D5843202E5A10001B7993 /* TabBarAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D5842202E5A10001B7993 /* TabBarAccessoryViewController.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		05E6F813C300BD07404B744A /* Pods-shOUT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shOUT.release.xcconfig"; path = "Pods/Target Support Files/Pods-shOUT/Pods-shOUT.release.xcconfig"; sourceTree = "<group>"; };
+		0C1CA196204370CC00A1F2C2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0C1D7B9B1FD1AC250090CE3A /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		0C5D5840202E59F4001B7993 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0C5D5842202E5A10001B7993 /* TabBarAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessoryViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				8CFF6E161FD1FCA10096CF2D /* NewsFeed2TableViewController.swift */,
 				0C5D5840202E59F4001B7993 /* TabBarController.swift */,
 				0C5D5842202E5A10001B7993 /* TabBarAccessoryViewController.swift */,
+				0C1CA196204370CC00A1F2C2 /* MapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				17AAF9821E24679E00F66887 /* PostViewController.swift in Sources */,
 				8CFF6E171FD1FCA10096CF2D /* NewsFeed2TableViewController.swift in Sources */,
 				17B967871E1C3B58008F94A5 /* SpeakOutViewController.swift in Sources */,
+				0C1CA197204370CC00A1F2C2 /* MapViewController.swift in Sources */,
 				0C5D5841202E59F4001B7993 /* TabBarController.swift in Sources */,
 				17BF4F671E2408760068ADDC /* Constants.swift in Sources */,
 				174E5F9F1E2188AE00E010F7 /* AccordionMenu.swift in Sources */,

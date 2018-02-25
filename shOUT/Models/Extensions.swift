@@ -31,5 +31,6 @@ extension UIViewController {
         
         nav?.barTintColor = lightTeal
         nav?.isTranslucent = true
+        nav?.tintColor = .white
     }
 }

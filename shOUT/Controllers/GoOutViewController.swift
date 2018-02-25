@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+
 class GoOutViewController: UIViewController, MKMapViewDelegate {
     
     var mapView: MKMapView!
