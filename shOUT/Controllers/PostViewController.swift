@@ -207,8 +207,10 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
-        goOutViewController.addPinToMap(postViewController: self)
-        dismiss(animated: true, completion: nil)
+      //  goOutViewController.addPinToMap(postViewController: self)
+        dismiss(animated: true, completion: {
+            self.goOutViewController.addPinToMap(postViewController: self)
+        })
     }
     
     @objc func cancelButtonPressed() {

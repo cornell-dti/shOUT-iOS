@@ -13,7 +13,7 @@ import CoreLocation
 class GoOutViewController: UIViewController, MKMapViewDelegate {
     
     var mapView: MKMapView!
-    
+    var mapViewController: MapViewController!
     var segmentedControl: UISegmentedControl!
     
     var geocoder = CLGeocoder()
@@ -52,13 +52,15 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
         mapView.addGestureRecognizer(longGesture)
         let camera = MKMapCamera(lookingAtCenter: mapView.centerCoordinate, fromEyeCoordinate: mapView.centerCoordinate, eyeAltitude: 1000)
         mapView.setCamera(camera, animated: true)
+        print (mapView)
     }
     
     func addPinToMap(postViewController: PostViewController) {
         if let address = postViewController.locationTextField.text
         {
             if address == "" {
-                self.emptyAddressAlert()
+             //   self.emptyAddressAlert()
+                mapViewController.emptyAddressAlert()
             }
             else{
                 self.geocoder.geocodeAddressString(address) {
@@ -66,15 +68,16 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
                     let placemark = placemarks?.first
                     let lat = placemark?.location?.coordinate.latitude
                     let long = placemark?.location?.coordinate.longitude
-                    print (lat); print (long);
                     let location = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
                     let localAnnotation = MKPointAnnotation()
                     localAnnotation.coordinate = location
                     localAnnotation.title = address
                     
                     localAnnotation.subtitle = "Potential Unsafe Zone"
+                    print (localAnnotation)
+                    print (self.mapView)
                     self.mapView.addAnnotation(localAnnotation)
-                    self.transformPins()
+                    //self.transformPins()
                     
                 }
             }

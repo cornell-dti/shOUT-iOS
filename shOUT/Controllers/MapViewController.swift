@@ -22,6 +22,7 @@ class MapViewController: PulleyViewController {
         makeNavBar()
         
         goOutViewController = GoOutViewController()
+        goOutViewController.mapViewController = self
         postViewController = PostViewController()
         postViewController.goOutViewController = goOutViewController
         onMapViewController = ReachOutViewController()
@@ -31,6 +32,14 @@ class MapViewController: PulleyViewController {
         let composeButton = UIBarButtonItem(title: "Compose", style: .plain, target: self, action: #selector(composeButtonPressed))
         navigationItem.setRightBarButton(composeButton, animated: true)
         
+    }
+    
+    func emptyAddressAlert() {
+        let message = "You left the location field empty. Nothing was added to the map."
+        let alertController = UIAlertController(title: "Blank Address", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok.", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func composeButtonPressed() {
