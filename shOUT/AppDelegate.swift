@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import SnapKit
 import Pulley
+import GoogleMaps
+import GooglePlaces
+import GooglePlacePicker
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,15 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController = TabBarController()
         tabBarController.addTab(index: 0, rootViewController: UINavigationController(rootViewController: FindOutViewController()), selectedImage: #imageLiteral(resourceName: "find_out"), unselectedImage: #imageLiteral(resourceName: "find_out"))
         tabBarController.addTab(index: 1, rootViewController: UINavigationController(rootViewController: SpeakOutViewController()), selectedImage: #imageLiteral(resourceName: "speak_out"), unselectedImage: #imageLiteral(resourceName: "speak_out"))
-        let mapNav = UINavigationController(rootViewController: MapViewController(contentViewController: GoOutViewController(), drawerViewController: ReachOutViewController()))
-        tabBarController.addTab(index: 2, rootViewController: mapNav, selectedImage: #imageLiteral(resourceName: "go_out"), unselectedImage: #imageLiteral(resourceName: "go_out"))
+        tabBarController.addTab(index: 2, rootViewController: UINavigationController(rootViewController: GoogleMapsViewController()), selectedImage: #imageLiteral(resourceName: "go_out"), unselectedImage: #imageLiteral(resourceName: "go_out"))
         tabBarController.addTab(index: 3, rootViewController: UINavigationController(rootViewController: ReachOutViewController()), selectedImage: #imageLiteral(resourceName: "reach_out"), unselectedImage: #imageLiteral(resourceName: "reach_out"))
         tabBarController.currentlyPresentedViewController = FindOutViewController()
         
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tabBarController
-        
+        GMSServices.provideAPIKey("AIzaSyCTM0-eZZkcBZn_sh8XxZpgB1hzSOtDWsE")
+        GMSPlacesClient.provideAPIKey("AIzaSyCxcZPigKKi6IT-Nm18NbbprbUkFp1jNUc")
         return true
     }
     

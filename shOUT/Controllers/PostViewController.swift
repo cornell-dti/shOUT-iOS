@@ -9,6 +9,10 @@ import UIKit
 import CoreLocation
 import Firebase
 
+//protocol GoogleMapsViewControllerDelegate {
+//    func googleMapsViewControllerDidLongTap (googleMapsViewController: GoogleMapsViewController)
+//}
+
 class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
     var goOutViewController: GoOutViewController!
@@ -23,6 +27,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var storyTextView: UITextView!
     var postButton: UIButton!
     var cancelButton: UIButton!
+    var delegate: GoogleMapsViewControllerDelegate?
     
     let ref = FIRDatabase.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
@@ -184,6 +189,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             make.top.equalTo(storyTextView.snp.bottom).offset(20)
         }
         
+        
    //     let body = self.bodyView!
    //     let title = self.titleView!
    //
@@ -207,9 +213,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
-      //  goOutViewController.addPinToMap(postViewController: self)
         dismiss(animated: true, completion: {
-            self.goOutViewController.addPinToMap(postViewController: self)
+            
         })
     }
     

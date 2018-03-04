@@ -12,6 +12,8 @@ import MapKit
 
 class Constants {
 
+    static let tabBarHeight: CGFloat = 50.0
+    
     class Post {
         var title : String!
         var body : String!

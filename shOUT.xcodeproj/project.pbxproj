@@ -34,6 +34,7 @@
 		17BF4F671E2408760068ADDC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BF4F661E2408760068ADDC /* Constants.swift */; };
 		17D578381E242865003405F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D578371E242865003405F1 /* MapKit.framework */; };
 		17D5783A1E2428B4003405F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D578391E2428B4003405F1 /* CoreLocation.framework */; };
+		8C83EF3F204B3CA800646A94 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83EF3E204B3CA800646A94 /* GoogleMapsViewController.swift */; };
 		8CFF6E151FD1F4070096CF2D /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF6E141FD1F4070096CF2D /* NewsFeedTableViewCell.swift */; };
 		8CFF6E171FD1FCA10096CF2D /* NewsFeed2TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF6E161FD1FCA10096CF2D /* NewsFeed2TableViewController.swift */; };
 		90EAAC723CBD11365B381C15 /* Pods_shOUTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E8C544DA3E8BDD3F1DAEE7 /* Pods_shOUTUITests.framework */; };
@@ -99,6 +100,7 @@
 		3C4937BFBCD6A648E6C4E7B2 /* Pods-shOUTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shOUTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shOUTTests/Pods-shOUTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0445F92BADC406B85778C1 /* Pods-shOUT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shOUT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shOUT/Pods-shOUT.debug.xcconfig"; sourceTree = "<group>"; };
 		5FED247ADC6B8EBB7E5930BC /* Pods_shOUTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shOUTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C83EF3E204B3CA800646A94 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		8CFF6E141FD1F4070096CF2D /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		8CFF6E161FD1FCA10096CF2D /* NewsFeed2TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeed2TableViewController.swift; sourceTree = "<group>"; };
 		C0E8C544DA3E8BDD3F1DAEE7 /* Pods_shOUTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shOUTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				0C5D5840202E59F4001B7993 /* TabBarController.swift */,
 				0C5D5842202E5A10001B7993 /* TabBarAccessoryViewController.swift */,
 				0C1CA196204370CC00A1F2C2 /* MapViewController.swift */,
+				8C83EF3E204B3CA800646A94 /* GoogleMapsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,7 +345,7 @@
 				TargetAttributes = {
 					17B9677E1E1C3B58008F94A5 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = NVY52276C4;
+						DevelopmentTeam = MJ5Q5C9SFW;
 						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -436,13 +439,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shOUTTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5737F5A11D02D353520895AA /* [CP] Check Pods Manifest.lock */ = {
@@ -451,13 +457,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shOUTUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5C872C88A1B05DC392CA2C4E /* [CP] Check Pods Manifest.lock */ = {
@@ -466,13 +475,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shOUT-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		83E0113D90B6EAE565B25C0B /* [CP] Embed Pods Frameworks */ = {
@@ -511,9 +523,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-shOUT/Pods-shOUT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -526,9 +545,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-shOUT/Pods-shOUT-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -568,6 +592,7 @@
 				0C5D5843202E5A10001B7993 /* TabBarAccessoryViewController.swift in Sources */,
 				17B967B51E1C40A8008F94A5 /* GoOutViewController.swift in Sources */,
 				1761222F1E2194D800DA0CC2 /* CustomNavigationController.swift in Sources */,
+				8C83EF3F204B3CA800646A94 /* GoogleMapsViewController.swift in Sources */,
 				0C884F871FD1FB0F00064E57 /* BlogViewController.swift in Sources */,
 				17AAF9841E24681500F66887 /* SinglePostViewController.swift in Sources */,
 				170326591E2421B0003BEF5B /* Extensions.swift in Sources */,
@@ -716,7 +741,7 @@
 			baseConfigurationReference = 3D0445F92BADC406B85778C1 /* Pods-shOUT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NVY52276C4;
+				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = shOUT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shOUT.iOS;
@@ -730,7 +755,7 @@
 			baseConfigurationReference = 05E6F813C300BD07404B744A /* Pods-shOUT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NVY52276C4;
+				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = shOUT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shOUT.iOS;

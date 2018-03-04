@@ -9,6 +9,9 @@ target 'shOUT' do
   pod 'Firebase/Database'
   pod 'SnapKit', '~> 4.0.0'
   pod ‘Pulley’
+  pod ‘GoogleMaps’
+  pod ‘GooglePlaces’
+  pod ‘GooglePlacePicker’
 
   # Pods for shOUT
 

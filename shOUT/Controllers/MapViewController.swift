@@ -21,12 +21,11 @@ class MapViewController: PulleyViewController {
         
         makeNavBar()
         
-        goOutViewController = GoOutViewController()
-        goOutViewController.mapViewController = self
+        let googleVC = GoogleMapsViewController()
         postViewController = PostViewController()
         postViewController.goOutViewController = goOutViewController
         onMapViewController = ReachOutViewController()
-        pulleyViewController = PulleyViewController(contentViewController: goOutViewController, drawerViewController: onMapViewController)
+        pulleyViewController = PulleyViewController(contentViewController: googleVC, drawerViewController: onMapViewController)
         pulleyViewController.makeNavBar()
         
         let composeButton = UIBarButtonItem(title: "Compose", style: .plain, target: self, action: #selector(composeButtonPressed))
