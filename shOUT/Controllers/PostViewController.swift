@@ -9,10 +9,6 @@ import UIKit
 import CoreLocation
 import Firebase
 
-//protocol GoogleMapsViewControllerDelegate {
-//    func googleMapsViewControllerDidLongTap (googleMapsViewController: GoogleMapsViewController)
-//}
-
 class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
     var goOutViewController: GoOutViewController!
@@ -27,8 +23,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var storyTextView: UITextView!
     var postButton: UIButton!
     var cancelButton: UIButton!
-    var delegate: GoogleMapsViewControllerDelegate?
-    
+    var location: String = "Inset your location here"
     let ref = FIRDatabase.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
     
@@ -132,7 +127,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         locationTextField.font = reportLabel.font
         locationTextField.textColor = .lightGray
         locationTextField.adjustsFontSizeToFitWidth = true
-        locationTextField.text = "Inset Location Here"
+        locationTextField.text = location
         view.addSubview(locationTextField)
         
         locationTextField.snp.makeConstraints { (make) in
@@ -210,6 +205,14 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         locationManager.startUpdatingLocation()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func autoFillLocation(location: String) {
+        if locationTextField != nil {
+            locationTextField.text = location
+        } else {
+            self.location = location
+        }
     }
     
     @objc func postButtonPressed() {

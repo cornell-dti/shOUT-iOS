@@ -8,29 +8,34 @@
 
 import UIKit
 import Pulley
+import MapKit
 
-class MapViewController: PulleyViewController {
+class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate {
     
-    var goOutViewController: GoOutViewController!
     var postViewController: PostViewController!
-    var onMapViewController: ReachOutViewController!
-    var pulleyViewController: PulleyViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeNavBar()
-        
-        let googleVC = GoogleMapsViewController()
         postViewController = PostViewController()
-        postViewController.goOutViewController = goOutViewController
-        onMapViewController = ReachOutViewController()
-        pulleyViewController = PulleyViewController(contentViewController: googleVC, drawerViewController: onMapViewController)
-        pulleyViewController.makeNavBar()
+        
+        if let googleMapsViewController = primaryContentViewController as? GoogleMapsViewController {
+            googleMapsViewController.delegate = self
+        }
+        
+        makeNavBar()
         
         let composeButton = UIBarButtonItem(title: "Compose", style: .plain, target: self, action: #selector(composeButtonPressed))
         navigationItem.setRightBarButton(composeButton, animated: true)
         
+    }
+    
+    func googleMapsViewControllerDidLongTap(googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D) {
+        print("did long tap")
+        let loc: String = "\(location.latitude), \(location.longitude)"
+        postViewController.location = loc
+        postViewController.autoFillLocation(location: loc)
+        present(postViewController, animated: true, completion: nil)
     }
     
     func emptyAddressAlert() {
@@ -42,6 +47,7 @@ class MapViewController: PulleyViewController {
     }
     
     @objc func composeButtonPressed() {
+        postViewController.autoFillLocation(location: "Inset your location here")
         present(postViewController, animated: true, completion: nil)
     }
     

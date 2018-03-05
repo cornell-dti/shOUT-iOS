@@ -12,7 +12,7 @@ import GooglePlaces
 import GooglePlacePicker
 
 protocol GoogleMapsViewControllerDelegate {
-    func googleMapsViewControllerDidLongTap (googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D)
+    func googleMapsViewControllerDidLongTap(googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D)
 }
 
 class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
@@ -34,7 +34,7 @@ class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
         let marker = GMSMarker(position: coordinate)
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = mapView
-        delegate?.googleMapsViewControllerDidLongTap (googleMapsViewController: self, location: coordinate)
+        delegate?.googleMapsViewControllerDidLongTap(googleMapsViewController: self, location: coordinate)
     }
     
     
