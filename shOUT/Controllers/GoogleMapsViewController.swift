@@ -22,8 +22,9 @@ class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load googlemapsVC")
         let camera = GMSCameraPosition.camera(withLatitude: 42.4493233251, longitude: -76.4792276369, zoom: 17.0)
-        let mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - Constants.tabBarHeight * 1.5), camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - Constants.tabBarHeight * 1.5), camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self

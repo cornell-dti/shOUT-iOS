@@ -16,7 +16,7 @@ class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("view did load mapVC")
         if let googleMapsViewController = primaryContentViewController as? GoogleMapsViewController {
             googleMapsViewController.delegate = self
         }

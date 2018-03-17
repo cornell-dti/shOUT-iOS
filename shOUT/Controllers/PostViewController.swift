@@ -52,6 +52,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         super.viewDidLoad()
     //    makeNavBar()
         
+        print("view did load postVC")
         view.backgroundColor = UIColor(hue: 0.4861, saturation: 0, brightness: 0.93, alpha: 1.0)
         
         box = UIView(frame: .zero)
