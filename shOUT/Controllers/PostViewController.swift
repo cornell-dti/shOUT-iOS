@@ -184,6 +184,8 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
             make.top.equalTo(storyTextView.snp.bottom).offset(20)
         }
         
+        goOutViewController = GoOutViewController()
+        
         
    //     let body = self.bodyView!
    //     let title = self.titleView!
@@ -217,7 +219,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     
     @objc func postButtonPressed() {
         dismiss(animated: true, completion: {
-            
+            //self.goOutViewController.addPinToMap(postViewController: self)
         })
     }
     

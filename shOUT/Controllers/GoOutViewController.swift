@@ -58,6 +58,7 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
     func addPinToMap(postViewController: PostViewController) {
         if let address = postViewController.locationTextField.text
         {
+            print ("address: " + address)
             if address == "" {
              //   self.emptyAddressAlert()
                 mapViewController.emptyAddressAlert()
@@ -75,7 +76,7 @@ class GoOutViewController: UIViewController, MKMapViewDelegate {
                     
                     localAnnotation.subtitle = "Potential Unsafe Zone"
                     print (localAnnotation)
-                    print (self.mapView)
+                    print ("mapview"); print (self.mapView);
                     self.mapView.addAnnotation(localAnnotation)
                     //self.transformPins()
                     
