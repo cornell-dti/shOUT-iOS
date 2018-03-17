@@ -32,22 +32,43 @@ class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate,
         
     }
     
-    func getAddress(coordinate: CLLocationCoordinate2D) {
+    func getAddress(coordinate: CLLocationCoordinate2D) -> String {
         let geocoder = GMSGeocoder()
+        var addr: String = ""
         geocoder.reverseGeocodeCoordinate(coordinate) { (response, error) in
-            guard let address = response?.firstResult(), let lines = address.lines else { return }
-            print(address)
+            if let error = error {
+                // handle errors later
+                print("a")
+            } else {
+                print("b")
+                guard let address = response?.firstResult(), let lines = address.lines else { return }
+                addr = lines.joined(separator: " ")
+            }
         }
+        print("c")
+        return addr
     }
     
     func googleMapsViewControllerDidLongTap(googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D) {
         print("did long tap")
-        print(getAddress(coordinate: location))
-        let loc: String = "\(location.latitude), \(location.longitude)"
-        postViewController.location = loc
-        postViewController.autoFillLocation(location: loc)
-        postViewController.currLocation = location
-        present(postViewController, animated: true, completion: nil)
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(location) { (response, error) in
+            if let error = error {
+                // alert controller
+                let alertController = UIAlertController(title: "Invalid address", message: "There was an error in locating the address. Try again.", preferredStyle: .actionSheet)
+                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                guard let address = response?.firstResult(), let lines = address.lines else { return }
+                let loc: String = lines.joined(separator: " ")
+                self.postViewController.location = loc
+                self.postViewController.autoFillLocation(location: loc)
+                self.postViewController.currLocation = location
+                self.present(self.postViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func postViewControllerDidTapPostButton(postViewController: PostViewController) {
