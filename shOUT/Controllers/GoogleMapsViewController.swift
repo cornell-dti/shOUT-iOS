@@ -29,11 +29,14 @@ class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
         mapView.delegate = self
         view.addSubview(mapView)
     }
-
-    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+    
+    func populateMapWithCoordinate(coordinate: CLLocationCoordinate2D) {
         let marker = GMSMarker(position: coordinate)
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = mapView
+    }
+
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         delegate?.googleMapsViewControllerDidLongTap(googleMapsViewController: self, location: coordinate)
     }
     

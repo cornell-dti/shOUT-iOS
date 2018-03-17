@@ -9,6 +9,10 @@ import UIKit
 import CoreLocation
 import Firebase
 
+protocol PostViewControllerDelegate {
+    func postViewControllerDidTapPostButton(postViewController: PostViewController)
+}
+
 class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
 
     var goOutViewController: GoOutViewController!
@@ -26,6 +30,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var location: String = "Inset your location here"
     let ref = FIRDatabase.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
+    var delegate: PostViewControllerDelegate?
     
     private func  alert() {
         print("start")
@@ -218,6 +223,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
+        delegate?.postViewControllerDidTapPostButton(postViewController: self)
         dismiss(animated: true, completion: {
             //self.goOutViewController.addPinToMap(postViewController: self)
         })
@@ -244,9 +250,11 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
         if(locations.count > 0){
+            print("setting current location")
             let location = locations[0] as! CLLocation
             currLocation = location.coordinate
         } else {
+            print("not setting current location")
             alert()
         }
     }

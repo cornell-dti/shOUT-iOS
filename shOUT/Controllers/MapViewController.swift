@@ -10,18 +10,19 @@ import UIKit
 import Pulley
 import MapKit
 
-class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate {
+class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate, PostViewControllerDelegate {
     
     var postViewController: PostViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postViewController = PostViewController()
-        
         if let googleMapsViewController = primaryContentViewController as? GoogleMapsViewController {
             googleMapsViewController.delegate = self
         }
+        
+        postViewController = PostViewController()
+        postViewController.delegate = self
         
         makeNavBar()
         
@@ -35,7 +36,16 @@ class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate 
         let loc: String = "\(location.latitude), \(location.longitude)"
         postViewController.location = loc
         postViewController.autoFillLocation(location: loc)
+        postViewController.currLocation = location
         present(postViewController, animated: true, completion: nil)
+    }
+    
+    func postViewControllerDidTapPostButton(postViewController: PostViewController) {
+        print("did tap post button")
+        if let googleMapsViewController = primaryContentViewController as? GoogleMapsViewController {
+            print("populating map")
+            googleMapsViewController.populateMapWithCoordinate(coordinate: postViewController.currLocation!)
+        }
     }
     
     func emptyAddressAlert() {
