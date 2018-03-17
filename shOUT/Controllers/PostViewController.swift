@@ -224,7 +224,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     }
     
     @objc func postButtonPressed() {
-        if locationTextField.text != nil {
+        if locationTextField.text != "" {
             delegate?.postViewControllerDidTapPostButton(postViewController: self)
         }
         dismiss(animated: true, completion: {

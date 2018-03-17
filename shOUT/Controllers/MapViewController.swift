@@ -9,6 +9,7 @@
 import UIKit
 import Pulley
 import MapKit
+import GoogleMaps
 
 class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate, PostViewControllerDelegate {
     
@@ -31,8 +32,17 @@ class MapViewController: PulleyViewController, GoogleMapsViewControllerDelegate,
         
     }
     
+    func getAddress(coordinate: CLLocationCoordinate2D) {
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(coordinate) { (response, error) in
+            guard let address = response?.firstResult(), let lines = address.lines else { return }
+            print(address)
+        }
+    }
+    
     func googleMapsViewControllerDidLongTap(googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D) {
         print("did long tap")
+        print(getAddress(coordinate: location))
         let loc: String = "\(location.latitude), \(location.longitude)"
         postViewController.location = loc
         postViewController.autoFillLocation(location: loc)
