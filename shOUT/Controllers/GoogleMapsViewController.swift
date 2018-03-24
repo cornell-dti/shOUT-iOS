@@ -15,10 +15,21 @@ protocol GoogleMapsViewControllerDelegate {
     func googleMapsViewControllerDidLongTap(googleMapsViewController: GoogleMapsViewController, location: CLLocationCoordinate2D)
 }
 
+class POIItem: NSObject, GMUClusterItem {
+    var position: CLLocationCoordinate2D
+    var name: String!
+    
+    init(position: CLLocationCoordinate2D, name: String) {
+        self.position = position
+        self.name = name
+    }
+}
+
 class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
 
     var mapView: GMSMapView!
     var delegate: GoogleMapsViewControllerDelegate?
+    var clusterManager: GMUClusterManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +39,28 @@ class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self
+        
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+
+        clusterManager.cluster()
+        
         view.addSubview(mapView)
     }
     
+    func generateClusterItems(coordinate: CLLocationCoordinate2D) {
+        let item = POIItem(position: coordinate, name: "Potential Dangerous Zone")
+        clusterManager.add(item)
+        clusterManager.cluster()
+    }
+    
     func populateMapWithCoordinate(coordinate: CLLocationCoordinate2D) {
-        let marker = GMSMarker(position: coordinate)
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
+//        let marker = GMSMarker(position: coordinate)
+//        marker.appearAnimation = GMSMarkerAnimation.pop
+//        marker.map = mapView
+        generateClusterItems(coordinate: coordinate)
     }
 
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
@@ -44,7 +70,7 @@ class GoogleMapsViewController: UIViewController, GMSMapViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
 }

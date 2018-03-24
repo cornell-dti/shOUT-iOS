@@ -8,12 +8,13 @@
 import UIKit
 import CoreLocation
 import Firebase
+import GooglePlaces
 
 protocol PostViewControllerDelegate {
     func postViewControllerDidTapPostButton(postViewController: PostViewController)
 }
 
-class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
+class PostViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
 
     var goOutViewController: GoOutViewController!
     var box: UIView!
@@ -134,6 +135,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         locationTextField.textColor = .lightGray
         locationTextField.adjustsFontSizeToFitWidth = true
         locationTextField.text = location
+        locationTextField.delegate = self
         view.addSubview(locationTextField)
         
         locationTextField.snp.makeConstraints { (make) in
@@ -213,6 +215,14 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
         locationManager.startUpdatingLocation()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == locationTextField {
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            present(autocompleteController, animated: true, completion: nil)
+        }
     }
     
     func autoFillLocation(location: String) {
@@ -311,5 +321,38 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+extension PostViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+        self.locationTextField.text = place.name
+        self.currLocation = place.coordinate
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
     
 }
