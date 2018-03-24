@@ -10,7 +10,7 @@ import UIKit
 
 class FindOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var stories = [Story]()
+    var stories = [Report]()
     var tableView: UITableView!
 
     override func viewDidLoad() {

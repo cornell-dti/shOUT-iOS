@@ -11,33 +11,26 @@ import Firebase
 
 class SpeakOutViewController: UITableViewController {
     
-    var posts : [Constants.Post] = []
+    var reports = [Report]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavBar()
+        print("view did load speak out")
         
         self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
-        
-        let ref = FIRDatabase.database().reference(withPath: "messages")
-        
-        ref.observe(.value, with: { snapshot in
-            // 2
-            var newPosts: [Constants.Post] = []
-            
-            // 3
-            for item in snapshot.children {
-                // 4
-                let post = Constants.Post(snapshot: item as! FIRDataSnapshot)
-                newPosts.insert(post, at: 0)
+        Firestore.firestore().collection("reports").whereField("hasbody", isEqualTo: true).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("error querying reports")
+                print(error.localizedDescription)
+            } else {
+                for document in snapshot!.documents {
+                    print(document.data())
+                }
             }
-            
-            // 5
-            self.posts = newPosts
-            self.tableView.reloadData()
-        })
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -52,7 +45,7 @@ class SpeakOutViewController: UITableViewController {
     }
     
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.posts.count
+        return self.reports.count
     }
     
     override  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

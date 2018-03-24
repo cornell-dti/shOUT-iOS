@@ -7,6 +7,8 @@ target 'shOUT' do
 
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod ‘Firebase/Auth’
   pod 'SnapKit', '~> 4.0.0'
   pod ‘Pulley’
   pod ‘GoogleMaps’

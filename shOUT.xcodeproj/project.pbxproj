@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0136B62066014E00E13B1D /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0136B52066014E00E13B1D /* Report.swift */; };
 		0C1CA197204370CC00A1F2C2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1CA196204370CC00A1F2C2 /* MapViewController.swift */; };
 		0C1D7B9C1FD1AC250090CE3A /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1D7B9B1FD1AC250090CE3A /* StoryTableViewCell.swift */; };
 		0C5D5841202E59F4001B7993 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D5840202E59F4001B7993 /* TabBarController.swift */; };
@@ -16,7 +17,6 @@
 		170326531E240B65003BEF5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 170326521E240B65003BEF5B /* GoogleService-Info.plist */; };
 		170326551E240B6A003BEF5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 170326541E240B6A003BEF5B /* GoogleService-Info.plist */; };
 		170326591E2421B0003BEF5B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170326581E2421B0003BEF5B /* Extensions.swift */; };
-		1732BDA11E231BD900D1347A /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732BDA01E231BD900D1347A /* Story.swift */; };
 		174E5F9D1E21888C00E010F7 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174E5F9C1E21888C00E010F7 /* Parent.swift */; };
 		174E5F9F1E2188AE00E010F7 /* AccordionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174E5F9E1E2188AE00E010F7 /* AccordionMenu.swift */; };
 		1761222F1E2194D800DA0CC2 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1761222E1E2194D800DA0CC2 /* CustomNavigationController.swift */; };
@@ -61,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		05E6F813C300BD07404B744A /* Pods-shOUT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shOUT.release.xcconfig"; path = "Pods/Target Support Files/Pods-shOUT/Pods-shOUT.release.xcconfig"; sourceTree = "<group>"; };
+		0C0136B52066014E00E13B1D /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		0C1CA196204370CC00A1F2C2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0C1D7B9B1FD1AC250090CE3A /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		0C5D5840202E59F4001B7993 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		170326521E240B65003BEF5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		170326541E240B6A003BEF5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		170326581E2421B0003BEF5B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		1732BDA01E231BD900D1347A /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		174E5F9C1E21888C00E010F7 /* Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
 		174E5F9E1E2188AE00E010F7 /* AccordionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenu.swift; sourceTree = "<group>"; };
 		1761222E1E2194D800DA0CC2 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 			children = (
 				174E5F9C1E21888C00E010F7 /* Parent.swift */,
 				170326581E2421B0003BEF5B /* Extensions.swift */,
-				1732BDA01E231BD900D1347A /* Story.swift */,
+				0C0136B52066014E00E13B1D /* Report.swift */,
 				17BF4F661E2408760068ADDC /* Constants.swift */,
 			);
 			path = Models;
@@ -448,7 +448,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5737F5A11D02D353520895AA /* [CP] Check Pods Manifest.lock */ = {
@@ -466,7 +466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5C872C88A1B05DC392CA2C4E /* [CP] Check Pods Manifest.lock */ = {
@@ -484,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		83E0113D90B6EAE565B25C0B /* [CP] Embed Pods Frameworks */ = {
@@ -592,6 +592,7 @@
 				0C5D5843202E5A10001B7993 /* TabBarAccessoryViewController.swift in Sources */,
 				17B967B51E1C40A8008F94A5 /* GoOutViewController.swift in Sources */,
 				1761222F1E2194D800DA0CC2 /* CustomNavigationController.swift in Sources */,
+				0C0136B62066014E00E13B1D /* Report.swift in Sources */,
 				8C83EF3F204B3CA800646A94 /* GoogleMapsViewController.swift in Sources */,
 				0C884F871FD1FB0F00064E57 /* BlogViewController.swift in Sources */,
 				17AAF9841E24681500F66887 /* SinglePostViewController.swift in Sources */,
@@ -599,7 +600,6 @@
 				17B967B31E1C403E008F94A5 /* FindOutViewController.swift in Sources */,
 				8CFF6E151FD1F4070096CF2D /* NewsFeedTableViewCell.swift in Sources */,
 				0C1D7B9C1FD1AC250090CE3A /* StoryTableViewCell.swift in Sources */,
-				1732BDA11E231BD900D1347A /* Story.swift in Sources */,
 				17B967851E1C3B58008F94A5 /* ReachOutViewController.swift in Sources */,
 				174E5F9D1E21888C00E010F7 /* Parent.swift in Sources */,
 			);

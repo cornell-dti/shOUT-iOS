@@ -28,7 +28,7 @@ class PostViewController: UIViewController, UITextViewDelegate, CLLocationManage
     var postButton: UIButton!
     var cancelButton: UIButton!
     var location: String = "Inset your location here"
-    let ref = FIRDatabase.database().reference(withPath: "messages")
+    let ref = Database.database().reference(withPath: "messages")
     let locationManager = CLLocationManager()
     var delegate: PostViewControllerDelegate?
     

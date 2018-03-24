@@ -25,7 +25,7 @@ class Constants {
             self.datePosted = Date().timeIntervalSinceReferenceDate
         }
         
-        init(snapshot: FIRDataSnapshot) {
+        init(snapshot: DataSnapshot) {
             let snapshotValue = snapshot.value as! [String: AnyObject]
             self.title = snapshotValue["title"] as! String
             self.body = snapshotValue["body"] as! String
