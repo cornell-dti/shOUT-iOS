@@ -827,11 +827,7 @@
 				0C5D5843202E5A10001B7993 /* TabBarAccessoryViewController.swift in Sources */,
 				17B967B51E1C40A8008F94A5 /* GoOutViewController.swift in Sources */,
 				1761222F1E2194D800DA0CC2 /* CustomNavigationController.swift in Sources */,
-<<<<<<< Updated upstream
-				0C0136B62066014E00E13B1D /* Report.swift in Sources */,
-=======
 				8C669258205DD2B100939F21 /* GMUGroundOverlay.m in Sources */,
->>>>>>> Stashed changes
 				8C83EF3F204B3CA800646A94 /* GoogleMapsViewController.swift in Sources */,
 				8C669254205DD2B100939F21 /* GMUGeometryRenderer.m in Sources */,
 				8C66925A205DD2B100939F21 /* GMUPlacemark.m in Sources */,
@@ -842,12 +838,9 @@
 				8C669265205DD2B100939F21 /* GMUDefaultClusterRenderer.m in Sources */,
 				8CFF6E151FD1F4070096CF2D /* NewsFeedTableViewCell.swift in Sources */,
 				0C1D7B9C1FD1AC250090CE3A /* StoryTableViewCell.swift in Sources */,
-<<<<<<< Updated upstream
-=======
 				8C669256205DD2B100939F21 /* GMUFeature.m in Sources */,
 				1732BDA11E231BD900D1347A /* Story.swift in Sources */,
 				8C669263205DD2B100939F21 /* GMUStaticCluster.m in Sources */,
->>>>>>> Stashed changes
 				17B967851E1C3B58008F94A5 /* ReachOutViewController.swift in Sources */,
 				8C669266205DD2B100939F21 /* GMUGradient.m in Sources */,
 				8C669253205DD2B100939F21 /* GMUGeoJSONParser.m in Sources */,
